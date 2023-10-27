@@ -56,4 +56,4 @@ thouoghtSchema.virtual("reactionCount")
 
 const thought  = model('thought', thouoghtSchema);
 
-module.export = thought;
+module.exports = thought;
