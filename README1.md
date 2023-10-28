@@ -57,7 +57,7 @@ To run the application
 - Enter the command npm start, press enter
 - Navaigate to the API server for running on port 
 - Test all the routes
-- [Video](https:) for walk through assistance   
+- [Video](https://drive.google.com/file/d/1yoYicoD7UPP0q67qxXiA0js-fp712ULL/view) for walk through assistance   
 
 
 ## License
