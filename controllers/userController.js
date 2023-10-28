@@ -82,7 +82,7 @@ module.exports = {
   // add friend
   async addFriend(req, res) {
     try {
-      const user = await User.fineOneAndUpdate(
+      const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
         { $addToSet: { friends: req.params.friendId } },
         { runValidators: true, new: true }
@@ -95,12 +95,13 @@ module.exports = {
       res.json(user);
     } catch (err) {
       res.status(500).json(err);
+      console.log(err)
     }
   },
   // remove friend
   async removeFriend(req, res) {
     try {
-      const user = await Student.findOneAndUpdate(
+      const user = await User.findOneAndRemove(
         { _id: req.params.userId },
         { $pull: { friends: req.params.friendId } },
         { runValidators: true, new: true }
@@ -115,6 +116,7 @@ module.exports = {
       res.json(user);
     } catch (err) {
       res.status(500).json(err);
+      console.log(err)
     }
   },
 };

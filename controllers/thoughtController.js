@@ -1,4 +1,4 @@
-const {User, Thought } = require('../models');
+const { Thought, User } = require('../models');
 
 module.exports = {
     // Get all thoughts
@@ -34,6 +34,7 @@ module.exports = {
             res.json(thought);
         } catch (err) {
             res.status(500).json(err);
+            console.log(err);
         }
     },
     // update a thought by id
@@ -74,7 +75,7 @@ module.exports = {
     async addUserThought (req, res) {
         const { thoughtID, userID } = req.params;
         try {
-            const thought = await Thought.findByIDAndUpdate(
+            const thought = await Thought.findByIdAndUpdate(
                 thoughtID,
                 {$addToSet: {users: userID} },
                 {new: true} 
@@ -86,13 +87,14 @@ module.exports = {
                 res.json(thought);
         } catch (err) {
             res.status(500).json(err);
+            console.log(err)
         }
     },
     // delete user thought
     async deleteUserThought (req, res){
         const { userID, thoughtID} = req.params;
         try {
-            const thought = await thought.findByIDAndUpdate(
+            const thought = await thought.findByIdAndUpdate(
                 thoughtID,
                 { $pull: {user: userID} },
                 { new: true}
@@ -113,7 +115,7 @@ module.exports = {
         const { reactionbody, username} = req.body;
 
         try {
-            const updateThought = await Thought.findByIDAndUpdate(
+            const updateThought = await Thought.findByIdAndUpdate(
                 thoughtID,
                 {$push: {reactions: { reactionbody, username}}},
                 {new: true}
@@ -125,14 +127,15 @@ module.exports = {
             res.json( updateThought);
         } catch (err) {
             res.status(500).json(err);
+            console.log(err)
         }
     },
-    // delete reacttion 
+    // delete reaction 
     async deleteReaction (req, res) {
         const { thoughtID, reactionId } = req.params;
         
         try {
-            const updateThought = await Thought.findByIDAndUpdate(
+            const updateThought = await Thought.findByIdAndUpdate(
                 thoughtID,
                 {$pull: {reactions: { _id: reactionId}}},
                 {new: true}
@@ -144,6 +147,7 @@ module.exports = {
             res.json( updateThought);
         } catch (err) {
             res.status(500).json(err);
+            console.log(err)
         }
     },
 };
