@@ -4,8 +4,8 @@ module.exports = {
     // Get all thoughts
     async getAllThoughts (req, res) {
         try {
-            const thoughts = await Thought.find().populate('username');
-            res.json(thoughts);
+            const thought = await Thought.find().populate('username');
+            res.json(thought);
         } catch (err){
             console.log(err);
             return res.status(500).json (err);
@@ -54,6 +54,7 @@ module.exports = {
         }   catch (err){
             console.log(err);
             return res.status(500).json(err);
+            
         }
     },
     // Delete to Remove Thought
