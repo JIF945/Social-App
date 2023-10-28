@@ -11,6 +11,7 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
+
   // get a single user
   async getSingleUser(req, res) {
     try {

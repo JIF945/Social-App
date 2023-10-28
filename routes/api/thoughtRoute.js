@@ -26,9 +26,9 @@ router
   .put(updateThought)
   .delete(deleteThought);
 
-// /api/thoughts/:thoughtId/userID
+// /api/thoughts/:thoughtId/userId
 router
-.route('/:thoughtID/users/:userID')
+.route('/:thoughtId/users/:userId')
 .post(addUserThought)
 .delete(deleteUserThought)
 
