@@ -15,7 +15,7 @@ module.exports = {
   async getSingleUser(req, res) {
     try {
       const user = await User.findOne({
-        _id: req.params.id,
+        _id: req.params.userId,
       });
       if (!user) {
         res.status(404).json({
@@ -43,7 +43,7 @@ module.exports = {
     try {
       const updateUser = await User.findOneAndUpdate(
         {
-          _id: req.params.id,
+          _id: req.params.userId,
         },
         { $set: req.body },
         {
@@ -65,12 +65,12 @@ module.exports = {
   async deleteUser(req, res) {
     try {
       const user = await User.findOneAndRemove({
-        _id: req.params.id,
+        _id: req.params.userId,
       });
 
       if (!user) {
         res.status(404).json({
-          message: "no student exist",
+          message: "no user exist",
         });
       }
       return;
