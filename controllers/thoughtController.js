@@ -73,7 +73,7 @@ module.exports = {
     },
     // user to thought
     async addUserThought (req, res) {
-        const { thoughtID, userID } = req.params;
+        const { thoughtID, userID } = req.params.thoughtID;
         try {
             const thought = await Thought.findByIdAndUpdate(
                 thoughtID,
@@ -92,7 +92,7 @@ module.exports = {
     },
     // delete user thought
     async deleteUserThought (req, res){
-        const { userID, thoughtID} = req.params;
+        const { userID, thoughtID} = req.params.thoughtID;
         try {
             const thought = await thought.findByIdAndUpdate(
                 thoughtID,
