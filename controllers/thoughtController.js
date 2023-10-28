@@ -46,15 +46,14 @@ module.exports = {
                 {new: true}
                 );
 
-                if(!thought){
-                    res.status(404).json({message:'No thought with this ID'});
+                if (!thought){
+                    res.status(500).json({message:'No thought with this Id'}); 
                 }
 
                 res.json(thought);
-        }   catch (err){
+        }   catch (err) {
             console.log(err);
-            return res.status(500).json(err);
-            
+             return res.status(500).json(err);
         }
     },
     // Delete to Remove Thought
@@ -112,12 +111,12 @@ module.exports = {
     },
     // create reaction
     async createReaction (req, res) {
-        const { thoughtID } = req.params;
-        const { reactionbody, username} = req.body;
+        const { thoughtId } = req.params;
+        const { reactionbody, username} = req.body
 
         try {
             const updateThought = await Thought.findByIdAndUpdate(
-                thoughtID,
+                thoughtId,
                 {$push: {reactions: { reactionbody, username}}},
                 {new: true}
             ).populate('username');
@@ -133,12 +132,12 @@ module.exports = {
     },
     // delete reaction 
     async deleteReaction (req, res) {
-        const { thoughtID, reactionId } = req.params;
+        const { thoughtId, reactionId } = req.params.thoughtId;
         
         try {
             const updateThought = await Thought.findByIdAndUpdate(
-                thoughtID,
-                {$pull: {reactions: { _id: reactionId}}},
+                thoughtId,
+                {$pull: {reactions: { _id: reactionId }}},
                 {new: true}
             ).populate('username');
 
