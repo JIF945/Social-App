@@ -70,11 +70,12 @@ module.exports = {
       });
 
       if (!user) {
-        res.status(404).json({
+        return res.status(404).json({
           message: "no user exist",
         });
       }
-      return;
+      res.json(user);({
+        message: 'user deleted'});
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -111,7 +112,7 @@ module.exports = {
       if (!user) {
         return res
           .status(404)
-          .json({ message: "No student found with that ID :(" });
+          .json({ message: "No user found with that ID :(" });
       }
 
       res.json(user);
